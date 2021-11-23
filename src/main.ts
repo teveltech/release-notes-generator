@@ -31,7 +31,9 @@ async function run(): Promise<void> {
         commits,
         logger: { log: core.info },
         options: {
-          repositoryUrl: repo ? `https://github.com/` + repo : `https://github.com/${process.env.GITHUB_REPOSITORY}`
+          repositoryUrl: repo
+            ? `https://github.com/` + repo
+            : `https://github.com/${process.env.GITHUB_REPOSITORY}`,
         },
         lastRelease: { gitTag: fromRef },
         nextRelease: { gitTag: toRef, version: version }
