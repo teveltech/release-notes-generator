@@ -3,19 +3,19 @@ import { generateNotes } from '@semantic-release/release-notes-generator';
 import { context, getOctokit } from '@actions/github';
 
 async function run(): Promise<void> {
-  try {
-    const version = core.getInput('version');
-    let repository = core.getInput('repository');
-    let owner = core.getInput('owner');
-    let repo = core.getInput('repo');
-    const fromRef = core.getInput('from_ref_exclusive');
-    const toRef = core.getInput('to_ref_inclusive');
-    const githubToken = core.getInput('github_token');
-    if (repository)
-      [owner, repo] = repository.split("/");
-    if (owner && repo)
-      repository = owner + '/' + repo
+  const version = core.getInput('version');
+  let repository = core.getInput('repository');
+  let owner = core.getInput('owner');
+  let repo = core.getInput('repo');
+  const fromRef = core.getInput('from_ref_exclusive');
+  const toRef = core.getInput('to_ref_inclusive');
+  const githubToken = core.getInput('github_token');
+  if (repository)
+    [owner, repo] = repository.split("/");
+  if (owner && repo)
+    repository = owner + '/' + repo
     
+  try {
     const octokit = getOctokit(githubToken);
 
     const commits = (
