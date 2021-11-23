@@ -5,16 +5,20 @@ import { context, getOctokit } from '@actions/github';
 async function run(): Promise<void> {
   try {
     const version = core.getInput('version');
-    const repo = core.getInput('repo');
-    const fromRef = core.getInput('from_ref_exclusive');
+    const repository = core.getInput('repository');
+    let owner = core.getInput('owner');
+    let repo = core.getInput('repo');    const fromRef = core.getInput('from_ref_exclusive');
     const toRef = core.getInput('to_ref_inclusive');
     const githubToken = core.getInput('github_token');
+    if (repository)
+      [owner, repo] = repository.split("/");
 
     const octokit = getOctokit(githubToken);
 
     const commits = (
       await octokit.repos.compareCommits({
-        repo,
+        owner: owner,
+        repo: repo,
         base: fromRef,
         head: toRef
       })
