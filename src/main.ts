@@ -5,7 +5,7 @@ import { context, getOctokit } from '@actions/github';
 async function run(): Promise<void> {
   try {
     const version = core.getInput('version');
-    const repository = core.getInput('repository');
+    let repository = core.getInput('repository');
     let owner = core.getInput('owner');
     let repo = core.getInput('repo');
     const fromRef = core.getInput('from_ref_exclusive');
