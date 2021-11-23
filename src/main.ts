@@ -32,7 +32,8 @@ async function run(): Promise<void> {
         hash: commit.sha
       }));
 
-    const releaseNotes = await generateNotes(
+    try{
+      const releaseNotes = await generateNotes(
       {},
       {
         commits,
@@ -45,7 +46,10 @@ async function run(): Promise<void> {
         lastRelease: { gitTag: fromRef },
         nextRelease: { gitTag: toRef, version: version }
       }
-    );
+      );
+    }catch (error) {
+      core.warning(`Action failed with errorrrrrrrrr ${error.stack}`);
+    }
 
     core.info(`Release notes: ${releaseNotes}`);
     core.setOutput('release_notes', releaseNotes);
