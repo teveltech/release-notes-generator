@@ -49,6 +49,7 @@ async function run(): Promise<void> {
       );
     }catch (error) {
       core.warning(`Action failed with errorrrrrrrrr ${error.stack}`);
+      const releaseNotes = "";
     }
 
     core.info(`Release notes: ${releaseNotes}`);
