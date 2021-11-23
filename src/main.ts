@@ -7,12 +7,15 @@ async function run(): Promise<void> {
     const version = core.getInput('version');
     const repository = core.getInput('repository');
     let owner = core.getInput('owner');
-    let repo = core.getInput('repo');    const fromRef = core.getInput('from_ref_exclusive');
+    let repo = core.getInput('repo');
+    const fromRef = core.getInput('from_ref_exclusive');
     const toRef = core.getInput('to_ref_inclusive');
     const githubToken = core.getInput('github_token');
     if (repository)
       [owner, repo] = repository.split("/");
-
+    else
+      repository = owner + '/' + repo
+    
     const octokit = getOctokit(githubToken);
 
     const commits = (
@@ -35,8 +38,8 @@ async function run(): Promise<void> {
         commits,
         logger: { log: core.info },
         options: {
-          repositoryUrl: repo
-            ? `https://github.com/` + repo
+          repositoryUrl: repository
+            ? `https://github.com/` + repository
             : `https://github.com/${process.env.GITHUB_REPOSITORY}`,
         },
         lastRelease: { gitTag: fromRef },
