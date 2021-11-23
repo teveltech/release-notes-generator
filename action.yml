@@ -2,8 +2,14 @@ name: 'Semantic Release Notes Generator'
 description: 'Generates release notes using semantic-release/release-notes-generator'
 author: 'Fredrik Arvidsson'
 inputs:
+  owner:
+    description: 'The Github user or organization that owns the repository'
+    required: false
   repo:
-    description: 'The Github repository to check'
+    description: 'The repository name'
+    required: false
+  repository:
+    description: 'The repository name in full'
     required: false
   github_token:
     description: 'The Github token used to query this repository'
