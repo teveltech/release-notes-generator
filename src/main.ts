@@ -5,6 +5,7 @@ import { context, getOctokit } from '@actions/github';
 async function run(): Promise<void> {
   try {
     const version = core.getInput('version');
+    const repo = core.getInput('repo');
     const fromRef = core.getInput('from_ref_exclusive');
     const toRef = core.getInput('to_ref_inclusive');
     const githubToken = core.getInput('github_token');
@@ -30,7 +31,7 @@ async function run(): Promise<void> {
         commits,
         logger: { log: core.info },
         options: {
-          repositoryUrl: `https://github.com/${process.env.GITHUB_REPOSITORY}`
+          repositoryUrl: repo ? `https://github.com/` + repo : `https://github.com/${process.env.GITHUB_REPOSITORY}`
         },
         lastRelease: { gitTag: fromRef },
         nextRelease: { gitTag: toRef, version: version }
