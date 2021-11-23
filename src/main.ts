@@ -14,7 +14,7 @@ async function run(): Promise<void> {
 
     const commits = (
       await octokit.repos.compareCommits({
-        ...context.repo,
+        repo,
         base: fromRef,
         head: toRef
       })
