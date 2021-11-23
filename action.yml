@@ -13,8 +13,7 @@ inputs:
     required: false
   github_token:
     description: 'The Github token used to query this repository'
-    required: true
-    default: ${{ github.token }}
+    required: false
   version:
     description: 'The version of the release'
     required: true
