@@ -13,7 +13,7 @@ async function run(): Promise<void> {
     const githubToken = core.getInput('github_token');
     if (repository)
       [owner, repo] = repository.split("/");
-    else
+    if (owner && repo)
       repository = owner + '/' + repo
     
     const octokit = getOctokit(githubToken);
