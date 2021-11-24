@@ -1,6 +1,6 @@
 {
   "name": "release-notes-generator",
-  "main": "lib/main.js",
+  "main": "main.js",
   "scripts": {
     "build": "tsc",
     "publish": "ncc build -m src/main.ts",
