@@ -16,7 +16,7 @@ async function run(): Promise<void> {
     repository = owner + '/' + repo
     
   try {
-    const octokit = (githubToken ? getOctokit(githubToken) : getOctokit());
+    const octokit = getOctokit(githubToken);
 
     const commits = (
       await octokit.repos.compareCommits({
