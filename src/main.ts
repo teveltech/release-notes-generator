@@ -13,15 +13,15 @@ async function run(): Promise<void> {
   if (repository)
     [owner, repo] = repository.split("/");
   else if (owner && repo)
-    repository = owner + '/' + repo
+    repository = owner + '/' + repo;
     
   try {
     const octokit = getOctokit(githubToken);
 
     const commits = (
       await octokit.repos.compareCommits({
-        owner: owner,
-        repo: repo,
+        {owner: owner,
+        repo: repo},
         base: fromRef,
         head: toRef
       })
