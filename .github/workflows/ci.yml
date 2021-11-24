@@ -24,7 +24,7 @@ jobs:
       - name: Test Fetching Artifact
         run: |
           GITHUB_ACTION_REPOSITORY=teveltech/release-notes-generator \
-          GITHUB_ACTION_REF=vTEST \
+          GITHUB_ACTION_REF=v0.2.9-pre-4c2739f \
           node fetch_artifact.js
       - name: Assert Artifact Downloaded
         run: ls -d $GITHUB_WORKSPACE/dist/index.js
