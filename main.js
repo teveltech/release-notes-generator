@@ -78,7 +78,9 @@ function run() {
                             commits: commits,
                             logger: { log: core.info },
                             options: {
-                                repositoryUrl: "https://github.com/" + process.env.GITHUB_REPOSITORY
+                                repositoryUrl: repository
+                                    ? "https://github.com/" + repository
+                                    : "https://github.com/" + process.env.GITHUB_REPOSITORY
                             },
                             lastRelease: { gitTag: fromRef },
                             nextRelease: { gitTag: toRef, version: version }

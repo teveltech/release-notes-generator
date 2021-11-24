@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import { generateNotes } from '@semantic-release/release-notes-generator';
-import { context, getOctokit } from '@actions/github';
+import { getOctokit } from '@actions/github';
 
 async function run(): Promise<void> {
   const version = core.getInput('version');
@@ -36,7 +36,9 @@ async function run(): Promise<void> {
         commits,
         logger: { log: core.info },
         options: {
-          repositoryUrl: `https://github.com/${process.env.GITHUB_REPOSITORY}`
+          repositoryUrl: repository
+            ? `https://github.com/` + repository
+            : `https://github.com/${process.env.GITHUB_REPOSITORY}`
         },
         lastRelease: { gitTag: fromRef },
         nextRelease: { gitTag: toRef, version: version }
