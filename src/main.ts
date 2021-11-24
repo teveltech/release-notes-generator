@@ -46,7 +46,7 @@ async function run(): Promise<void> {
     core.info(`Release notes: ${releaseNotes}`);
     core.setOutput('release_notes', releaseNotes);
   } catch (error) {
-    core.setFailed(`Action failed with ${error.stack}`);
+    core.setFailed(`Action failed with error ${error}`);
   }
 }
 
