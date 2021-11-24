@@ -46,7 +46,7 @@ function run() {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    version = core.getInput('version');
+                    version = core.getInput('title');
                     repository = core.getInput('repository');
                     owner = core.getInput('owner');
                     repo = core.getInput('repo');

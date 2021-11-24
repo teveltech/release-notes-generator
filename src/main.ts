@@ -3,7 +3,7 @@ import { generateNotes } from '@semantic-release/release-notes-generator';
 import { getOctokit } from '@actions/github';
 
 async function run(): Promise<void> {
-  const version = core.getInput('version');
+  const version = core.getInput('title');
   let repository = core.getInput('repository');
   let owner = core.getInput('owner');
   let repo = core.getInput('repo');

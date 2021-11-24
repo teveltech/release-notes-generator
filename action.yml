@@ -15,8 +15,8 @@ inputs:
     description: 'The Github token used to query this repository'
     required: true
     default: ${{ github.token }}
-  version:
-    description: 'The version of the release'
+  title:
+    description: 'The title of the release'
     required: true
   from_ref_exclusive:
     description: >-
@@ -45,7 +45,6 @@ outputs:
     description: 'Semantic release notes'
 runs:
   using: 'node12'
-  # pre: 'fetch_artifact.js'
   main: 'main.js'
 branding:
   icon: 'file-text'
