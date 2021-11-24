@@ -12,7 +12,7 @@ async function run(): Promise<void> {
   const githubToken = core.getInput('github_token');
   if (repository)
     [owner, repo] = repository.split("/");
-  if (owner && repo)
+  else if (owner && repo)
     repository = owner + '/' + repo
     
   try {
@@ -32,23 +32,9 @@ async function run(): Promise<void> {
         hash: commit.sha
       }));
 
-      const releaseNotes = await generateNotes(
-      {},
-      {
-        commits,
-        logger: { log: core.info },
-        options: {
-          repositoryUrl: `https://github.com/${process.env.GITHUB_REPOSITORY}`,
-        },
-        lastRelease: { gitTag: fromRef },
-        nextRelease: { gitTag: toRef, version: version }
-      }
-      );
 
-    core.info(`Release notes: ${releaseNotes}`);
-    core.setOutput('release_notes', releaseNotes);
   } catch (error) {
-    core.setFailed(`Action failed with error ${error.stack} ${repository}`);
+    core.setFailed(`Action failed with ${error.stack}`);
   }
 }
 
