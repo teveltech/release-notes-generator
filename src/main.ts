@@ -19,11 +19,10 @@ async function run(): Promise<void> {
     const octokit = getOctokit(githubToken);
 
     const commits = (
-      await octokit.repos.compareCommits({
-        {owner: owner,
-        repo: repo},
-        base: fromRef,
-        head: toRef
+      await octokit.repos.compareCommitsWithBasehead({
+        owner: owner,
+        repo: repo,
+        basehead: fromRef + '...' + toRef
       })
     ).data.commits
       .filter((commit) => !!commit.commit.message)
