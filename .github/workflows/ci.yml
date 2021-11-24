@@ -23,7 +23,7 @@ jobs:
         run: npm run publish
       - name: Test Fetching Artifact
         run: |
-          GITHUB_ACTION_REPOSITORY=Fresa/release-notes-generator \
+          GITHUB_ACTION_REPOSITORY=teveltech/release-notes-generator \
           GITHUB_ACTION_REF=vTEST \
           node fetch_artifact.js
       - name: Assert Artifact Downloaded
