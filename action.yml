@@ -45,7 +45,7 @@ outputs:
     description: 'Semantic release notes'
 runs:
   using: 'node12'
-  pre: 'fetch_artifact.js'
+  # pre: 'fetch_artifact.js'
   main: 'dist/index.js'
 branding:
   icon: 'file-text'
